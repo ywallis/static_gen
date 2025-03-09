@@ -1,11 +1,5 @@
 from textnode import TextNode, TextType
 
-# pseudocode:
-# only process .normal nodes
-# if len node.split(delimiter) == 3
-#
-
-
 def split_nodes_delimiter(
     old_nodes: list[TextNode], delimiter: str, text_type: TextType
 ) -> list[TextNode]:

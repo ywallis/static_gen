@@ -11,7 +11,6 @@ class ParentNode(HTMLNode):
     ) -> None:
         super().__init__(tag, children=children, props=props)
 
-    @override
     def to_html(self):
         if self.tag is None:
             raise ValueError("all parent nodes should have a tag")

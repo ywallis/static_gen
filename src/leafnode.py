@@ -1,4 +1,3 @@
-from typing import override
 from htmlnode import HTMLNode
 
 
@@ -14,7 +13,6 @@ class LeafNode(HTMLNode):
         if value is None:
             raise ValueError("leaf nodes must have a value")
 
-    @override
     def to_html(self):
         if self.tag is None:
             return self.value

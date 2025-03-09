@@ -1,5 +1,5 @@
 import unittest
-from extract_regex import extract_markdown_images, extract_markdown_links
+from utils import extract_markdown_images, extract_markdown_links
 
 
 class TestExtractRegex(unittest.TestCase):

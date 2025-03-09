@@ -1,6 +1,6 @@
 import unittest
-from leafnode import LeafNode
-from parentnode import ParentNode
+
+from objects import LeafNode, ParentNode
 
 
 class TestHTMLNode(unittest.TestCase):
@@ -25,5 +25,6 @@ class TestHTMLNode(unittest.TestCase):
         parent = ParentNode("div", [child_1, child_2, child_3])
 
         self.assertEqual(
-            parent.to_html(), "<div><div>front</div><div>back</div><div>left</div></div>"
+            parent.to_html(),
+            "<div><div>front</div><div>back</div><div>left</div></div>",
         )
