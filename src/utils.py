@@ -1,6 +1,6 @@
 import re
 
-from objects import TextNode, TextType, HTMLNode, LeafNode
+from objects import BlockType, TextNode, TextType, HTMLNode, LeafNode
 
 
 def extract_markdown_images(text: str):
@@ -125,6 +125,19 @@ def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
     return new_nodes
 
 
+def block_to_block_type(block: str) -> BlockType:
+    match block: 
+        case block if block.startswith("#"):
+            return BlockType.HEADING
+
+        case block if block.startswith("```"):
+            return BlockType.CODE
+
+        # case block if block.startswith("")
+        
+        case _:
+            return BlockType.PARAGRAPH
+
 def text_node_to_html_node(text_node: TextNode) -> HTMLNode:
     match text_node.text_type:
         case TextType.NORMAL:
@@ -159,3 +172,17 @@ def text_to_textnode(text: str):
     links = split_nodes_link(code)
     images = split_nodes_image(links)
     return images
+
+def markdown_to_blocks(markdown: str) -> list[str]:
+    markdown = markdown.strip()
+    
+    blocks = markdown.split("\n\n")
+    
+    cleaned_blocks = []
+    for block in blocks:
+        if block.strip():  # Only process non-empty blocks
+            lines = [line.strip() for line in block.split("\n")]
+            cleaned_block = "\n".join(lines)
+            cleaned_blocks.append(cleaned_block)
+    
+    return cleaned_blocks
